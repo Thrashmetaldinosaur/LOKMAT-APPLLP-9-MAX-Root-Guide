@@ -1,5 +1,7 @@
 # LOKMAT APPLLP 9 MAX — Root + Full Recovery Backup Guide
 
+> **Also available:** [LOKMAT APPLLP 7 Pro — Android 15 Magisk root (short guide)](APPLLP-7-Pro/README.md). Tested on a different board and firmware; do **not** cross-flash images between the 7 Pro and 9 MAX.
+
 This documents a successful root of the **LOKMAT APPLLP 9 MAX** running full Android 15, including how to enter MediaTek BROM, back up the original firmware, unlock the bootloader, install Magisk, and create both stock and known-good rooted recovery images.
 
 This is based on one specific unit and firmware build. **Do not blindly flash images from another watch**, especially NVRAM/NVDATA/NVCFG, OTP, Proinfo, Protect or other device-specific partitions.
