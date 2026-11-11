@@ -1,0 +1,6 @@
+id=appllp7_light_doze_persist
+name=APPLLP 7 Pro - Persistent Light Doze
+version=1.0
+versionCode=1
+author=APPLLP7 Pro watch project
+description=After each boot enable Light Doze and disable Deep Doze. No system overlays or Zygisk changes.
