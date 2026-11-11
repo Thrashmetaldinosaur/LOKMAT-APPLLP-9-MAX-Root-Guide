@@ -206,3 +206,7 @@ On the exact tested unit: BROM via top-right button; own-preloader-assisted firm
 **The complete 62.5 GB backup was taken for recovery/experimentation, not because rooting required it.** This short guide deliberately omits that long backup process.
 
 Related: [APPLLP 9 MAX root guide](../README.md), which uses a different board and, on the tested APPLLP 9 unit, a different active slot.
+
+## Verified follow-up: persistent Light Doze (10 November 2026)
+
+A reversible Magisk module for the rooted APPLLP 7 Pro is published in **[Light-Doze-Magisk-v1](Light-Doze-Magisk-v1/README.md)**, including the directly installable ZIP and its source scripts. On the tested Android 15/Slot A watch, the module successfully enabled **Light Doze ON / Deep Doze OFF** following a full reboot. A soft/framework-only reboot may reset the settings until the next full boot. The battery-life improvement has not yet been quantified.
