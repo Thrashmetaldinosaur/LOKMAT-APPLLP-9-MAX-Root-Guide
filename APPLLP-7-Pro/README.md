@@ -222,3 +222,7 @@ See **[Fitness-Debloat](Fitness-Debloat/README.md)** for the seven OEM health/fi
 ## Off-state charging
 
 As of 12 November 2026, the tester reports that LOKMAT **plans** powered-off charging support in a future OTA. This is **not** a confirmed firmware release or a working custom modification. Existing firmware modifications should not be presented as solving powered-off charging.
+
+## Android 15 Xposed/Vector compatibility note (10 November 2026)
+
+On the tested device, an LSPosed interface/notification issue was resolved by switching to **Vector** (an LSPosed-compatible implementation). This is a **device observation**, not a packaged source patch or a compatibility guarantee for other builds. No older S13 YouTube Xposed fullscreen hooks are required for the separate v6.2 Magisk YouTube/ReVanced fix.
