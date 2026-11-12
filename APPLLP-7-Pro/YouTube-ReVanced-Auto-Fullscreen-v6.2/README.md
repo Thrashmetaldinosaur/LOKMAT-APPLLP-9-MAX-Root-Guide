@@ -16,7 +16,7 @@ This is a **temporary system-wide logical-size override** during YouTube playbac
 
 ## Installation and configuration
 
-The verified Magisk module ID is `appllp7_youtube_auto_fullplayer`; version **6.2**. Install through **Magisk → Modules → Install from storage** using the module archive provided with this project, then perform a normal full reboot.
+The verified Magisk module ID is `appllp7_youtube_auto_fullplayer`; version **6.2**. Download **[APPLLP7PRO-YOUTUBE-AUTO-MAGISK-v6.2.zip](APPLLP7PRO-YOUTUBE-AUTO-MAGISK-v6.2.zip)** and install through **Magisk → Modules → Install from storage**, then perform a normal full reboot. The public ZIP is repacked from the **exact source scripts** of the tested v6.2 module (all seven Git blob hashes checked against the original); repacking changes the ZIP checksum, not the script content. Public ZIP SHA-256: `d3b093516622e85520128789376cce884f1b1acf400b85ec231812e8abb70d60`.
 
 The module has a `targets.conf` listing accepted package IDs, one per line. The actual successful installed configuration contained:
 
