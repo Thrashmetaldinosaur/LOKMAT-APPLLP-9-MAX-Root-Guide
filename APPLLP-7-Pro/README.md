@@ -210,3 +210,15 @@ Related: [APPLLP 9 MAX root guide](../README.md), which uses a different board a
 ## Verified follow-up: persistent Light Doze (10 November 2026)
 
 A reversible Magisk module for the rooted APPLLP 7 Pro is published in **[Light-Doze-Magisk-v1](Light-Doze-Magisk-v1/README.md)**, including the directly installable ZIP and its source scripts. On the tested Android 15/Slot A watch, the module successfully enabled **Light Doze ON / Deep Doze OFF** following a full reboot. A soft/framework-only reboot may reset the settings until the next full boot. The battery-life improvement has not yet been quantified.
+
+## Verified follow-up: YouTube + ReVanced auto fullscreen (11–12 November 2026)
+
+See **[YouTube-ReVanced-Auto-Fullscreen-v6.2](YouTube-ReVanced-Auto-Fullscreen-v6.2/README.md)** for the working Magisk `service.sh` approach, device measurements, and recovery notes. Regular YouTube and `app.revanced.android.youtube` were both confirmed working after reboot. It temporarily changes the logical viewport **466×466 → 466×426** *after foreground playback begins*, then returns to 466×466 on Home. It does **not** patch YouTube's APK or require Vector hooks. A static `normal + notround` system configuration was tested and **rolled back** because it did not independently solve fullscreen.
+
+## Verified follow-up: reversible OEM fitness debloat (10 November 2026)
+
+See **[Fitness-Debloat](Fitness-Debloat/README.md)** for the seven OEM health/fitness packages disabled for Android user 0 on the tested watch and the commands to restore them. Battery savings have not yet been quantified. The launcher and core connectivity services were preserved.
+
+## Off-state charging
+
+As of 12 November 2026, the tester reports that LOKMAT **plans** powered-off charging support in a future OTA. This is **not** a confirmed firmware release or a working custom modification. Existing firmware modifications should not be presented as solving powered-off charging.
