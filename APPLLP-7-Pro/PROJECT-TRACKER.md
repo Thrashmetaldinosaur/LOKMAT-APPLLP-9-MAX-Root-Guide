@@ -29,13 +29,14 @@
 ## Added requests / priorities
 
 1. **Recents / recent tasks shortcut — high priority.** Add an entry to an **available** quick-access slot or the long-top-button panel (currently volume, brightness and settings), or bind to a truly unused button combination. Do **not** override existing button actions. Investigate Android `KEYCODE_APP_SWITCH` (187) or accessibility `GLOBAL_ACTION_RECENTS`, confirm how the OEM implements its recent-apps page. No watcher/poller unless proven unavoidable.
-2. **Longer lift-to-wake cooldown.** Native lift-to-wake is already available. Increase the minimum interval between allowed wake cycles to prevent repeated wrist-motion wakeups; first measure the current behavior and determine whether an OEM parameter controls cooldown. Preserve native low-power sensor path. S13's 5-second software cooldown is a device-specific reference, not a drop-in APPLLP7 fix.
-3. **Aspect-ratio toggle shortcut — secondary to Recents.** Add to the top-button shortcut menu or an unused button combo without replacing current actions; keep native display geometry stable at rest.
-4. **Apps ignoring aspect-ratio switches.** Identify which apps fail and which display override/mode is requested. Investigate OEM per-app compatibility, window-layout propagation, activity recreation, and whether active fullscreen v6.2 can coexist. Do not re-enable the broken global square-first modification.
-5. **Clock/date-free 12-app first page:** verify experimental module; stop/revert if touch, pagination, or existing notification fixes regress.
-6. **Battery, wake, screen-off:** earlier unplugged test showed actual kernel suspend and Light Doze functioning; no proven runaway modem. Preserve baseline and measure before changing.
-7. **USB reliability:** return only if issues recur. Minimize reconnects.
-8. **Powered-off charging:** wait for the possible OEM OTA; no working custom fix published.
+2. **System-wide Fahrenheit weather units (°F) — NEW, higher priority than refining the existing display script.** User reports the Pure Face watch display generally shows °F after `wxf.sh`, **but the OEM built-in weather app still treats temperatures as °C**, and its updates occasionally overwrite the watch-face value with Celsius. Investigate a possible hidden OEM temperature-unit setting, weather-app preference, provider/ContentProvider unit field, or service-level unit conversion. Read-only inspect `settings` system/secure/global, the weather app's package/resources/preferences and its writer to `WeatherTemp` before changing anything. Target consistent Fahrenheit across built-in weather, watch face, and any related widgets, preferably by switching the source's units rather than continuously rewriting the stored temperature. Do not assume a universal Android setting exists, and preserve a rollback for any discovered key.
+3. **Longer lift-to-wake cooldown.** Native lift-to-wake is already available. Increase the minimum interval between allowed wake cycles to prevent repeated wrist-motion wakeups; first measure the current behavior and determine whether an OEM parameter controls cooldown. Preserve native low-power sensor path. S13's 5-second software cooldown is a device-specific reference, not a drop-in APPLLP7 fix.
+4. **Aspect-ratio toggle shortcut — secondary to Recents.** Add to the top-button shortcut menu or an unused button combo without replacing current actions; keep native display geometry stable at rest.
+5. **Apps ignoring aspect-ratio switches.** Identify which apps fail and which display override/mode is requested. Investigate OEM per-app compatibility, window-layout propagation, activity recreation, and whether active fullscreen v6.2 can coexist. Do not re-enable the broken global square-first modification.
+6. **Clock/date-free 12-app first page:** verify experimental module; stop/revert if touch, pagination, or existing notification fixes regress.
+7. **Battery, wake, screen-off:** earlier unplugged test showed actual kernel suspend and Light Doze functioning; no proven runaway modem. Preserve baseline and measure before changing.
+8. **USB reliability:** return only if issues recur. Minimize reconnects.
+9. **Powered-off charging:** wait for the possible OEM OTA; no working custom fix published.
 
 ## Operational notes
 
