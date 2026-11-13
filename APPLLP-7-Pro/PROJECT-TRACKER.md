@@ -15,7 +15,7 @@
 | App grid | `settings get system app_list_style` = **5**, Phone-style paged grid, preferred |
 | Custom app sorting | 94 entries reordered, original database backup preserved; SQLite integrity and order verified after restart |
 | Pure Face watch face | User installed `DigitalPureBlack` and changed the active face. [Installation and archive note](Pure-Face/README.md) |
-| Celsius → Fahrenheit display | Original `wxf.sh` reported working in-session; **restart safety not established**. See [weather fix notes](Weather-Temperature-Fahrenheit/README.md) |
+| Celsius → Fahrenheit display | **User confirmed working after a normal reboot (13 Nov 2026)** with `wxf.sh`. Potential repeated conversion after service restarts/when a saved value is already Fahrenheit remains an untested edge case. See [weather fix notes](Weather-Temperature-Fahrenheit/README.md) |
 
 ## Regressed / needs repair
 
