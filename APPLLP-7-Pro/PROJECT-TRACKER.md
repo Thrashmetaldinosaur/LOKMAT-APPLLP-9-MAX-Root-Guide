@@ -45,3 +45,5 @@
 - Any proposed change to notifications must explicitly protect important ongoing notifications.
 - Separate verified, user-reported, tested-and-regressed, and speculative states.
 - Do not publish the watch's USB serial, private ADB logs, sensitive backups or device identifiers.
+
+**v1.1 install result, 13 Nov 2026 16:45 ET:** Gradle build passed, package was upgraded in-place (`Performing Streamed Install` → `Success`), correct model/Android 15/Style 5, physical 182 DPI, unchanged verified launcher APK. v1.1 module SHA-256 `6b76c03417e116147ed01d8beb7e219d193821eb0f1723d25c575c93dda35d13`. Awaiting **normal reboot and screenshot** to prove Vector hook injection and functional 12-icon layout. No new OEM or global DPI modifications.
