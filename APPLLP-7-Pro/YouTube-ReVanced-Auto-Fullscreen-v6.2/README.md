@@ -56,3 +56,7 @@ The script must not be used on other displays or different Android watch models 
 Only module source and release artifacts should be public. **Do not publish results ZIPs** containing user-specific media sessions, screenshots, account metadata, ADB identifiers, recovery dumps, or firmware partitions.
 
 Related: [APPLLP 7 Pro root guide](../README.md) · [Light Doze v1](../Light-Doze-Magisk-v1/README.md).
+
+## Status change — 13 November 2026
+
+The watch owner found a **built-in portrait fullscreen option in YouTube ReVanced** that meets their needs, and has **disabled the formerly working v6.2 Magisk monitor as redundant**. The v6.2 method remains documented here as a tested historical alternative for configurations that need it, not as a module currently active on this watch. The ReVanced option is app-specific; no claim is made that standard YouTube exposes identical controls. Avoid automatically re-enabling the monitor during unrelated display/launcher changes.
