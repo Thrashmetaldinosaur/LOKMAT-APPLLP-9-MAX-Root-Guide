@@ -24,7 +24,7 @@
 
 ## Under test (not verified)
 
-- **Full First Page v1**: separate Vector/LSPosed module designed to suppress redundant clock/date and expand the first Style 5 page from 4 to 12 apps. **APK built and installed on the confirmed APPLLP7 on 13 Nov 2026 at 15:55**, Android reported `Success`; source/build/verification results ZIP inspected. **Vector activation, first-page rendering, touch targets and page swipes are still unverified**. Scope only to `com.android.launcher3`; disable module and reboot on regression. Original launcher and database left unchanged.
+- **Full First Page v1 — FAILED ON DEVICE (13 Nov 2026)**: APK built and installed correctly at 15:55, user enabled and scoped to `com.android.launcher3` in Vector, and rebooted. A screenshot after reboot still showed the original four-app/clock/date first page. Do **not** describe v1 as working. Stock launcher, app ordering and native 182 DPI remain intact. Root cause pending read-only Vector scope/hook-log check. Potential offline issue: layout/clock hooks are both gated on `ready`, which only becomes true if the app list is populated during `createDrawables`; an injection/scope failure is another possibility. Avoid reinstalling v1; disable it if unwanted. Goal remains remove clock/date and expand first page with verified tapping and pagination.
 
 ## Added requests / priorities
 
