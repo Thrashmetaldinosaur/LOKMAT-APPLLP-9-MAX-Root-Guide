@@ -226,3 +226,16 @@ As of 12 November 2026, the tester reports that LOKMAT **plans** powered-off cha
 ## Android 15 Xposed/Vector compatibility note (10 November 2026)
 
 On the tested device, an LSPosed interface/notification issue was resolved by switching to **Vector** (an LSPosed-compatible implementation). This is a **device observation**, not a packaged source patch or a compatibility guarantee for other builds. No older S13 YouTube Xposed fullscreen hooks are required for the separate v6.2 Magisk YouTube/ReVanced fix.
+
+
+## Current customization tracker (13 November 2026)
+
+See **[APPLLP 7 Pro project tracker](PROJECT-TRACKER.md)** for verified fixes, outstanding display/wake issues, and the requested Recents shortcut, longer lift-to-wake cooldown, aspect-ratio shortcut, and per-app aspect-ratio compatibility improvements.
+
+- [Pure Face / DigitalPureBlack watch face](Pure-Face/README.md) — installed and confirmed by the tester; installation helper included, user-supplied graphical assets not committed.
+- [Celsius-to-Fahrenheit display workaround](Weather-Temperature-Fahrenheit/README.md) — works in the user's session but requires a reboot-safe redesign.
+- Compact notification layout — a launcher-scoped Vector module was reported to work initially, **but user later reports it isn't working**; now tracked as a regression, not resolved.
+- Unwanted persistent notifications — investigate selective removal without silencing essential indicators.
+- Full First Page v1 — clock/date removal and first-page expansion are **still experimental**, awaiting on-device confirmation.
+
+**Display warning:** On the observed configuration, a 154 DPI override prevented the separate YouTube/ReVanced fullscreen v6.2 Magisk service from starting; returning to 182 native DPI with `wm density reset` restored fullscreen. Preserve the native 466×466/182 DPI display during other interface work.
