@@ -233,7 +233,7 @@ On the tested device, an LSPosed interface/notification issue was resolved by sw
 See **[APPLLP 7 Pro project tracker](PROJECT-TRACKER.md)** for verified fixes, outstanding display/wake issues, and the requested Recents shortcut, longer lift-to-wake cooldown, aspect-ratio shortcut, and per-app aspect-ratio compatibility improvements.
 
 - [Pure Face / DigitalPureBlack watch face](Pure-Face/README.md) — installed and confirmed by the tester; installation helper included, user-supplied graphical assets not committed.
-- [Celsius-to-Fahrenheit display workaround](Weather-Temperature-Fahrenheit/README.md) — works in the user's session but requires a reboot-safe redesign.
+- [Celsius-to-Fahrenheit display workaround](Weather-Temperature-Fahrenheit/README.md) — **user confirmed working after a full reboot (13 Nov 2026)**; repeated-conversion edge cases remain under review.
 - Compact notification layout — a launcher-scoped Vector module was reported to work initially, **but user later reports it isn't working**; now tracked as a regression, not resolved.
 - Unwanted persistent notifications — investigate selective removal without silencing essential indicators.
 - Full First Page v1 — clock/date removal and first-page expansion are **still experimental**, awaiting on-device confirmation.
