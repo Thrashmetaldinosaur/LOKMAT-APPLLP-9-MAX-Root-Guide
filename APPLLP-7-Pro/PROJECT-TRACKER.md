@@ -9,7 +9,7 @@
 | Root and recovery | Magisk 31.1 installed and verified. Stock backup retained. See [root README](README.md) |
 | Persistent Light Doze | Light ON, Deep OFF after full restart; see [module](Light-Doze-Magisk-v1/README.md). Battery improvement not quantified |
 | Fitness debloat | Seven OEM packages disabled reversibly; see [guide](Fitness-Debloat/README.md) |
-| YouTube + ReVanced fullscreen | Magisk auto fullscreen v6.2 works. **Native 182 DPI with no override is required on the observed setup**; overriding to 154 DPI broke it, and `wm density reset` restored playback. [v6.2 guide](YouTube-ReVanced-Auto-Fullscreen-v6.2/README.md). Vector YouTube hooks are NOT needed |
+| YouTube + ReVanced fullscreen | **ReVanced built-in portrait fullscreen setting discovered and verified sufficient by user (13 Nov)**; separate Magisk v6.2 service **disabled by user as redundant**. v6.2 had previously worked at native 182 DPI; 154 DPI override was incompatible with its startup guard. [Historical v6.2 guide](YouTube-ReVanced-Auto-Fullscreen-v6.2/README.md). Do not automatically re-enable it or Vector YouTube hooks |
 | Round/watch display | Physical/logical baseline 466×466, 182 native DPI. Global square-first experiment was removed |
 | Right-swipe panel | OEM launcher setting changed from fitness to App Menu |
 | App grid | `settings get system app_list_style` = **5**, Phone-style paged grid, preferred |
@@ -47,3 +47,5 @@
 - Do not publish the watch's USB serial, private ADB logs, sensitive backups or device identifiers.
 
 **v1.1 install result, 13 Nov 2026 16:45 ET:** Gradle build passed, package was upgraded in-place (`Performing Streamed Install` → `Success`), correct model/Android 15/Style 5, physical 182 DPI, unchanged verified launcher APK. v1.1 module SHA-256 `6b76c03417e116147ed01d8beb7e219d193821eb0f1723d25c575c93dda35d13`. Awaiting **normal reboot and screenshot** to prove Vector hook injection and functional 12-icon layout. No new OEM or global DPI modifications.
+
+**Full First Page v1.1 — ALSO FAILED ON DEVICE (13 Nov 2026):** The upgraded module installed successfully, user rebooted, but first page still has the original clock/date and limited app slots. There is **no post-v1.1 hook log in hand yet**, so do not presume v1.1 API failure versus initialization/geometry failure. Plan: inspect fresh Vector module logs; test a minimal clock-only hook and confirm runtime invocation before touching page-count/touch calculations. Avoid modifying/re-signing the privileged OEM launcher unless systemless/rollback/signature behavior can be proven; it provides Quickstep home, gesture service and notification listener. Current working app order and launcher preserved.
