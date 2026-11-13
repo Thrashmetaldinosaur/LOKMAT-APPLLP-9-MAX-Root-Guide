@@ -1,6 +1,6 @@
 # APPLLP 7 Pro — Celsius → Fahrenheit weather value workaround
 
-**Status: user reports Celsius-to-Fahrenheit display working during the session, 13 November 2026. Not verified across a full reboot.** This page documents the existing workaround and its limitations; **do not present this as a safe persistent module**.
+**Status: user confirmed Celsius-to-Fahrenheit display remains working after a normal full reboot on 13 November 2026.** The `service.d` workaround therefore survives at least one reboot on the tested watch. This observation does **not** yet establish correctness after repeated service restarts, multiple reboots, or all weather updates.
 
 ## What was run on the watch
 
@@ -23,12 +23,12 @@ done
 
 ## Important limitations
 
-- On a reboot/process restart `L=x` loses its memory. If the saved value is already Fahrenheit, it can be converted **again**, producing the wrong temperature.
+- The user confirmed the displayed Fahrenheit temperature works after reboot. **However**, on a reboot/process restart `L=x` loses its memory; if a saved value is *already* Fahrenheit when the loop first reads it, it **could** convert it again. This edge case has not been observed or ruled out.
 - The script has no lock; a manually started copy and Magisk service.d copy may run simultaneously.
 - The 60-second polling loop introduces recurring work even when weather data doesn't change, although its actual battery impact has not been measured.
 - An OEM weather update could overwrite `WeatherTemp` at any time. Negative temperatures and noninteger values are not explicitly handled.
 - No robust detection of the data source's units has been established.
 
-**Before editing/replacing this file**, back up the existing script and note the current `settings get system WeatherTemp` value. Avoid deleting the user's working configuration unilaterally. Future work should identify the weather data producer and convert **before** storage/display, or persist a reliable last-written value and enforce a single process. Test reboot and new weather updates before calling the change verified persistent.
+**Before editing/replacing this file**, back up the existing script and note the current `settings get system WeatherTemp` value. Avoid deleting the user's working configuration unilaterally. Future work should identify the weather data producer and convert **before** storage/display, or persist a reliable last-written value and enforce a single process. Full-reboot persistence has now been user-confirmed; test repeated reboots, script restarts and new weather updates before declaring the conversion logic fully robust.
 
 See [project tracker](../PROJECT-TRACKER.md).
