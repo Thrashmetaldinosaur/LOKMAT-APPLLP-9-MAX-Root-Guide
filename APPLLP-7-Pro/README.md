@@ -236,6 +236,6 @@ See **[APPLLP 7 Pro project tracker](PROJECT-TRACKER.md)** for verified fixes, o
 - [Celsius-to-Fahrenheit display workaround](Weather-Temperature-Fahrenheit/README.md) — **user confirmed working after a full reboot (13 Nov 2026)**; repeated-conversion edge cases remain under review.
 - Compact notification layout — a launcher-scoped Vector module was reported to work initially, **but user later reports it isn't working**; now tracked as a regression, not resolved.
 - Unwanted persistent notifications — investigate selective removal without silencing essential indicators.
-- Full First Page v1 — clock/date removal and first-page expansion are **still experimental**, awaiting on-device confirmation.
+- Full First Page v1 and v1.1 — clock/date removal and first-page expansion were both **unsuccessful on-device** despite successful APK installs; launcher remains unchanged. Investigate hook logs before retrying.
 
-**Display warning:** On the observed configuration, a 154 DPI override prevented the separate YouTube/ReVanced fullscreen v6.2 Magisk service from starting; returning to 182 native DPI with `wm density reset` restored fullscreen. Preserve the native 466×466/182 DPI display during other interface work.
+**Display warning:** On the observed configuration, a 154 DPI override prevented the separate YouTube/ReVanced fullscreen v6.2 Magisk service from starting; returning to 182 native DPI with `wm density reset` restored it. On 13 Nov the owner discovered ReVanced's own portrait-fullscreen setting and **disabled the redundant v6.2 module**. The built-in ReVanced setting works for their use case; this does not imply stock YouTube has the same setting. Preserve the native 466×466/182 DPI display during other interface work.
