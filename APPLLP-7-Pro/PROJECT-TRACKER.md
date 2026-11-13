@@ -24,7 +24,7 @@
 
 ## Under test (not verified)
 
-- **Full First Page v1**: separate Vector/LSPosed module, scoped to `com.android.launcher3`; removes redundant clock/date widget and expands first Style 5 page from 4 to 12 apps, preserving touch geometry. Installation package supplied for testing; **no successful device result yet reported**. Avoid stating this is working.
+- **Full First Page v1**: separate Vector/LSPosed module designed to suppress redundant clock/date and expand the first Style 5 page from 4 to 12 apps. **APK built and installed on the confirmed APPLLP7 on 13 Nov 2026 at 15:55**, Android reported `Success`; source/build/verification results ZIP inspected. **Vector activation, first-page rendering, touch targets and page swipes are still unverified**. Scope only to `com.android.launcher3`; disable module and reboot on regression. Original launcher and database left unchanged.
 
 ## Added requests / priorities
 
