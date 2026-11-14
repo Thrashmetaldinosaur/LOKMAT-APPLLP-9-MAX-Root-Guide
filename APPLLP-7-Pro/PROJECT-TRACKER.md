@@ -18,14 +18,14 @@
 | Pure Face watch face | User installed `DigitalPureBlack` and changed the active face. [Installation and archive note](Pure-Face/README.md) |
 | Native Fahrenheit + watchface v2 | **User-confirmed working 14 Nov 2026:** native `step_user_metric=0` enables Fahrenheit throughout OEM weather; a launcher-scoped Vector hook supplies converted temperature to watch faces in memory. Successful reboot and hook-log verification. Future weather refresh and OTA compatibility not yet proven. [Verified v2 source and guide](Watchface-Fahrenheit-v2/README.md). Old `wxf.sh` was a historical workaround, not the new fix |
 
-## Next task — disable notification vibration (14 November 2026)
+## Notification vibration — user-reported working (14 November 2026)
 
-- User requests **notification vibration OFF** while keeping visible notifications, call vibration, alarm vibration, and other haptics unaffected if possible. Currently away from PC; investigate a **native Android/OEM setting first**, then if unavailable use a reversible RTOSify terminal change limited to notification vibration. Do not disable vibrator globally or turn on DND merely to suppress notifications. Compare actual device behavior after a fresh notification. **Unverified / no fix installed.**
+- **Native system setting, no Vector module:** User ran RTOSify root command `settings put system notification_vibration_intensity 0`; prior value was `null`, afterwards `0`, exit code 0. User reports notification vibration **seems disabled**. Keep this setting unchanged; test persistence after next ordinary reboot (not confirmed). Do not conflate with call/alarm vibration.
 
-## Regressed / needs repair
+## Next tasks — native notification controls first (14 November 2026)
 
-1. **Smaller notification cards/text:** APPLLP7 Compact Notifications v1 Vector module installed, launcher-scoped; user first said it looked good, **but subsequently reports small notifications are not working**. Re-test hook activation, Vector scope and actual OEM notification view. Do not label the visual result verified until reconfirmed; preserve ability to disable module without affecting other fixes.
-2. **Persistent/ongoing notifications:** User wants unwanted persistent notification entries removed/hidden. Inventory notification packages and flags first; only suppress selected nonessential OEM notices without disabling critical phone, charging, security, navigation or accessibility status notifications. This is **not implemented**.
+1. **Remove unwanted persistent/ongoing notifications — FIRST:** Inspect Android Settings → Notifications → App notifications / notification categories, or long-press offending notification → Settings. For ongoing foreground-service notifications, determine owning package and channel before suppressing. User will be back at PC; collect sanitized read-only notification inventory if native UI doesn't expose enough controls. Avoid disabling important call, alarm, charging, security, media/navigation, accessibility, or Magisk status. No modifications yet.
+2. **Reduce notification card size/text — SECOND:** Check built-in Display size / Font size or native compact notification UI first. Prior APPLLP7 Compact Notifications v1 Vector module launcher-scoped reportedly stopped working; source used unsupported Xposed helper API. Only debug/surgically repair if stock settings cannot solve, preserving the working All Apps v1.7 and Watchface Fahrenheit v2 modules.
 
 ## Historical unsuccessful experiments (not active)
 
