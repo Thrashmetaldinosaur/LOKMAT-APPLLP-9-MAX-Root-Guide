@@ -1,8 +1,10 @@
 # APPLLP 7 Pro — fixes and development tracker
 
-**Updated 13 November 2026.** Reference device: `WP_C30_VP69_OLED`, Android 15, build `LOKMAT_APPLLP_7_PRO_C30_EN_V1.0_20260921`, Magisk 31.1, unlocked slot A. **Status labels distinguish user-confirmed results from tests and unverified proposals.**
+**Updated 14 November 2026.** Reference device: `WP_C30_VP69_OLED`, Android 15, build `LOKMAT_APPLLP_7_PRO_C30_EN_V1.0_20260921`, Magisk 31.1, unlocked slot A. **Status labels distinguish user-confirmed results from tests and unverified proposals.**
 
 ## Verified / keep working
+
+| Full First Page v1.6 | **User-confirmed working, 14 Nov 2026:** original four favorites remain at bottom, 10 normal icons on a native 5 × 2 first-page grid, redundant clock/date removed. Vector scoped only to launcher, no launcher APK/database changes. [Guide](Full-First-Page-v1.6/README.md) |
 
 | Feature | Result and caveat |
 | --- | --- |
@@ -33,7 +35,7 @@
 3. **Longer lift-to-wake cooldown.** Native lift-to-wake is already available. Increase the minimum interval between allowed wake cycles to prevent repeated wrist-motion wakeups; first measure the current behavior and determine whether an OEM parameter controls cooldown. Preserve native low-power sensor path. S13's 5-second software cooldown is a device-specific reference, not a drop-in APPLLP7 fix.
 4. **Aspect-ratio toggle shortcut — secondary to Recents.** Add to the top-button shortcut menu or an unused button combo without replacing current actions; keep native display geometry stable at rest.
 5. **Apps ignoring aspect-ratio switches.** Identify which apps fail and which display override/mode is requested. Investigate OEM per-app compatibility, window-layout propagation, activity recreation, and whether active fullscreen v6.2 can coexist. Do not re-enable the broken global square-first modification.
-6. **Clock/date-free 12-app first page:** verify experimental module; stop/revert if touch, pagination, or existing notification fixes regress.
+6. **Clock/date-free first page: COMPLETED (v1.6)** — 10 app icons plus 4 preserved OEM favorites, user-confirmed 14 Nov 2026. Native 5 × 2 capacity; don't force 12 regular slots.ntal module; stop/revert if touch, pagination, or existing notification fixes regress.
 7. **Battery, wake, screen-off:** earlier unplugged test showed actual kernel suspend and Light Doze functioning; no proven runaway modem. Preserve baseline and measure before changing.
 8. **USB reliability:** return only if issues recur. Minimize reconnects.
 9. **Powered-off charging:** wait for the possible OEM OTA; no working custom fix published.
