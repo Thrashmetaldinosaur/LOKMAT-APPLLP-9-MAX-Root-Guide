@@ -19,7 +19,7 @@ The first four OEM app indices remain the four dock favorites, using their origi
 
 ## Build and install
 
-This is a **source-based Vector module**. The verified, sanitized source archive includes the Java hook, Gradle Android project, Xposed compile-only stubs, and complete build instructions. It deliberately excludes private ADB serials, user-specific Windows paths, full diagnostic logs, and firmware backups.
+This is a **source-based Vector module**. The [verified sanitized source ZIP](APPLLP7-Full-First-Page-v1.6-PUBLIC-SOURCE.zip) includes the Java hook, Gradle Android project, Xposed compile-only stubs, and complete build instructions. It deliberately excludes private ADB serials, user-specific Windows paths, full diagnostic logs, and firmware backups.
 
 Build with JDK 17, Gradle 8.9, Android SDK 35, and Android Gradle Plugin 8.7.3:
 
@@ -31,7 +31,7 @@ adb install -r .\app\build\outputs\apk\debug\app-debug.apk
 
 Enable **APPLLP7 Full First Page v1.6** in Vector with scope **`com.android.launcher3` only**, reboot, and verify icon taps and swipes. **Rollback:** disable that module in Vector and reboot; the OEM clock/date and dock return. Do not clear launcher data.
 
-**Source archive SHA-256:** `c93d398a1c6f0eb4191b1ee9386bea67760e65721d0b5caa4d19abb710857d1d` (the clean 12,182-byte source ZIP, retained separately). Do not assume this README alone includes the ZIP.
+**Source archive SHA-256:** `c93d398a1c6f0eb4191b1ee9386bea67760e65721d0b5caa4d19abb710857d1d` (the clean 12,182-byte source ZIP published next to this guide).
 
 ## Version history (technical)
 
