@@ -243,4 +243,6 @@ See **[APPLLP 7 Pro project tracker](PROJECT-TRACKER.md)** for verified fixes, o
 
 ## Verified launcher customization (14 November 2026)
 
-[**Full First Page v1.7**](Full-First-Page-v1.7/README.md) removes the large clock/date from the OEM Style 5 app menu, keeps **10 regular icons per full page (5 × 2) and the four original bottom favorites**, and fixes the unaddressable empty page at wraparound. User-confirmed on the APPLLP 7 Pro; logs verify both wrap directions. This is a separate launcher-scoped Vector module, not part of rooting. Don't install on other firmware builds without verification.
+[**All Apps Fix (current v1.7)**](All-Apps-Fix/README.md) is one cumulative Vector module that removes the large clock/date from the OEM Style 5 app menu, keeps **10 regular icons per full page (5 × 2) and the four original bottom favorites**, preserves app sorting, and skips the unaddressable empty page at wraparound. User-confirmed on the APPLLP 7 Pro; logs verify both wrap directions. This is a separate launcher-scoped Vector module, not part of rooting. Don't install on other firmware builds without verification.
+
+**Current next task:** Turn off notification vibration without silencing notifications, calls, or alarms. Native setting first; RTOSify-only reversible test if necessary.
