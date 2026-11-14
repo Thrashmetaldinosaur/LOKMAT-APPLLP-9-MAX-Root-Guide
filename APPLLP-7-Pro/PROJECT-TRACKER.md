@@ -6,7 +6,7 @@
 
 | Feature | Result and caveat |
 | --- | --- |
-| Full First Page v1.7 | **User-reported working, 14 Nov 2026:** removes redundant clock/date, retains 10-icon 5 × 2 pages and four favorites, fixes previously blank wraparound screen. Post-reboot Vector logs confirm page `-1 → 9` and `10 → 0`, 97 app entries/drawables. Stock OEM launcher unchanged. [v1.7 source and guide](Full-First-Page-v1.7/README.md) |
+| All Apps Fix (v1.7) | **Verified cumulative module, 14 Nov 2026:** removes clock/date; retains 10-icon 5 × 2 pages, four favorites, and custom ordering; corrects early regular-app indexing and skips the blank wraparound page. Vector logs: `-1 → 9` / `10 → 0`, 97 app entries. **v1.7 replaces v1.6 inside one module**, not a separate add-on. [Canonical All Apps Fix](All-Apps-Fix/README.md) |
 | Root and recovery | Magisk 31.1 installed and verified. Stock backup retained. See [root README](README.md) |
 | Persistent Light Doze | Light ON, Deep OFF after full restart; see [module](Light-Doze-Magisk-v1/README.md). Battery improvement not quantified |
 | Fitness debloat | Seven OEM packages disabled reversibly; see [guide](Fitness-Debloat/README.md) |
@@ -18,6 +18,10 @@
 | Pure Face watch face | User installed `DigitalPureBlack` and changed the active face. [Installation and archive note](Pure-Face/README.md) |
 | Native Fahrenheit + watchface v2 | **User-confirmed working 14 Nov 2026:** native `step_user_metric=0` enables Fahrenheit throughout OEM weather; a launcher-scoped Vector hook supplies converted temperature to watch faces in memory. Successful reboot and hook-log verification. Future weather refresh and OTA compatibility not yet proven. [Verified v2 source and guide](Watchface-Fahrenheit-v2/README.md). Old `wxf.sh` was a historical workaround, not the new fix |
 
+## Next task — disable notification vibration (14 November 2026)
+
+- User requests **notification vibration OFF** while keeping visible notifications, call vibration, alarm vibration, and other haptics unaffected if possible. Currently away from PC; investigate a **native Android/OEM setting first**, then if unavailable use a reversible RTOSify terminal change limited to notification vibration. Do not disable vibrator globally or turn on DND merely to suppress notifications. Compare actual device behavior after a fresh notification. **Unverified / no fix installed.**
+
 ## Regressed / needs repair
 
 1. **Smaller notification cards/text:** APPLLP7 Compact Notifications v1 Vector module installed, launcher-scoped; user first said it looked good, **but subsequently reports small notifications are not working**. Re-test hook activation, Vector scope and actual OEM notification view. Do not label the visual result verified until reconfirmed; preserve ability to disable module without affecting other fixes.
@@ -27,7 +31,7 @@
 
 - **Full First Page v1 — FAILED ON DEVICE (13 Nov 2026)**: APK built and installed correctly at 15:55, user enabled and scoped to `com.android.launcher3` in Vector, and rebooted. A screenshot after reboot still showed the original four-app/clock/date first page. Do **not** describe v1 as working. Stock launcher, app ordering and native 182 DPI remain intact. Root cause pending read-only Vector scope/hook-log check. **Root cause established by 16:27 read-only Vector diagnostic:** Vector loaded the module class into launcher PID 2542, but the first registration raised `NoSuchMethodError` for the Xposed helper signature `XposedHelpers.findAndHookMethod(Class,String,Object[])`; no layout hooks were installed. There was no Vector scope/injection error. **v1.1 source package prepared (13 Nov)**: replace that helper entirely with `XposedBridge.hookAllMethods`, use plain Java reflection for launcher class and app-list lookup, and add hook/geometry milestone logs. Offline Java compilation passed; **device installation and rendered geometry are NOT YET verified**. v1.1 upgrades the same `com.appllp7.fullfirstpage` package (versionCode 2). Avoid reinstalling v1; disable it if unwanted. Goal remains remove clock/date and expand first page with verified tapping and pagination.
 
-## Launcher follow-ups — next priority (14 November 2026)
+## Launcher follow-ups — after notification vibration (14 November 2026)
 
 1. **Expand the distinct OEM widgets/options panel opened by swiping RIGHT to the screen LEFT of home — NEXT.** This is **not** the modded Style 5 app menu reached by swiping left. The stock widget picker has a limited set of widgets and poor configuration options; the owner's example is the **timer widget, which only offers a few fixed presets**. Determine whether this panel uses Android `AppWidgetHost` (and could offer third-party installed widgets) or a proprietary OEM widget/card registry. Investigate enabling more widgets, configurable widget variants and custom timer durations, preserving the stock swipe gestures, round 466 × 466 layout, and the working first-page/favorites mod. Screenshots showing Celsius are from **before** the successful Fahrenheit fix; do not treat them as a regression.
 
