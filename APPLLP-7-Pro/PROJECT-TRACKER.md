@@ -4,10 +4,9 @@
 
 ## Verified / keep working
 
-| Full First Page v1.6 | **User-confirmed working, 14 Nov 2026:** original four favorites remain at bottom, 10 normal icons on a native 5 × 2 first-page grid, redundant clock/date removed. Vector scoped only to launcher, no launcher APK/database changes. [Guide](Full-First-Page-v1.6/README.md) |
-
 | Feature | Result and caveat |
 | --- | --- |
+| Full First Page v1.6 | **User-confirmed working, 14 Nov 2026:** original four favorites remain at bottom, 10 normal icons on a native 5 × 2 first-page grid, redundant clock/date removed. Vector scoped only to launcher, no launcher APK/database changes. [Guide](Full-First-Page-v1.6/README.md) |
 | Root and recovery | Magisk 31.1 installed and verified. Stock backup retained. See [root README](README.md) |
 | Persistent Light Doze | Light ON, Deep OFF after full restart; see [module](Light-Doze-Magisk-v1/README.md). Battery improvement not quantified |
 | Fitness debloat | Seven OEM packages disabled reversibly; see [guide](Fitness-Debloat/README.md) |
@@ -17,7 +16,7 @@
 | App grid | `settings get system app_list_style` = **5**, Phone-style paged grid, preferred |
 | Custom app sorting | 94 entries reordered, original database backup preserved; SQLite integrity and order verified after restart |
 | Pure Face watch face | User installed `DigitalPureBlack` and changed the active face. [Installation and archive note](Pure-Face/README.md) |
-| Celsius → Fahrenheit display | **User confirmed working after a normal reboot (13 Nov 2026)** with `wxf.sh`. Potential repeated conversion after service restarts/when a saved value is already Fahrenheit remains an untested edge case. See [weather fix notes](Weather-Temperature-Fahrenheit/README.md) |
+| Native Fahrenheit + watchface v2 | **User-confirmed working 14 Nov 2026:** native `step_user_metric=0` enables Fahrenheit throughout OEM weather; a launcher-scoped Vector hook supplies converted temperature to watch faces in memory. Successful reboot and hook-log verification. Future weather refresh and OTA compatibility not yet proven. [Verified v2 source and guide](Watchface-Fahrenheit-v2/README.md). Old `wxf.sh` was a historical workaround, not the new fix |
 
 ## Regressed / needs repair
 
@@ -28,6 +27,11 @@
 
 - **Full First Page v1 — FAILED ON DEVICE (13 Nov 2026)**: APK built and installed correctly at 15:55, user enabled and scoped to `com.android.launcher3` in Vector, and rebooted. A screenshot after reboot still showed the original four-app/clock/date first page. Do **not** describe v1 as working. Stock launcher, app ordering and native 182 DPI remain intact. Root cause pending read-only Vector scope/hook-log check. **Root cause established by 16:27 read-only Vector diagnostic:** Vector loaded the module class into launcher PID 2542, but the first registration raised `NoSuchMethodError` for the Xposed helper signature `XposedHelpers.findAndHookMethod(Class,String,Object[])`; no layout hooks were installed. There was no Vector scope/injection error. **v1.1 source package prepared (13 Nov)**: replace that helper entirely with `XposedBridge.hookAllMethods`, use plain Java reflection for launcher class and app-list lookup, and add hook/geometry milestone logs. Offline Java compilation passed; **device installation and rendered geometry are NOT YET verified**. v1.1 upgrades the same `com.appllp7.fullfirstpage` package (versionCode 2). Avoid reinstalling v1; disable it if unwanted. Goal remains remove clock/date and expand first page with verified tapping and pagination.
 
+## Launcher follow-ups — current priority (14 November 2026)
+
+1. **Remove non-addressable blank app-menu page at wraparound — NEXT.** After the verified Full First Page v1.6 mod, swiping right from the first populated page or left from the last populated page reaches a blank screen with only the four favorites dock icons. The owner confirms apps **cannot be added** there. Investigate OEM `MobilePagedAllAppsBoard` page-count, camera bounds, wraparound navigation, hit-testing, and v1.6's mapping of four favorites to a native 5 × 2 regular grid. Target no empty page and uninterrupted first↔last populated-page wrap, preserving every app, app sorting and the four dock shortcuts. Start with read-only diagnostics; do not install another speculative fix.
+2. **Expand the distinct OEM widgets/options panel opened by swiping RIGHT to the screen LEFT of home — NEW REQUEST.** This is **not** the modded Style 5 app menu reached by swiping left. The stock widget picker has a limited set of widgets and poor configuration options; the owner's example is the **timer widget, which only offers a few fixed presets**. Determine whether this panel uses Android `AppWidgetHost` (and could offer third-party installed widgets) or a proprietary OEM widget/card registry. Investigate enabling more widgets, configurable widget variants and custom timer durations, preserving the stock swipe gestures, round 466 × 466 layout, and the working first-page/favorites mod. Screenshots showing Celsius are from **before** the successful Fahrenheit fix; do not treat them as a regression.
+
 ## Added requests / priorities
 
 1. **Recents / recent tasks shortcut — high priority.** Add an entry to an **available** quick-access slot or the long-top-button panel (currently volume, brightness and settings), or bind to a truly unused button combination. Do **not** override existing button actions. Investigate Android `KEYCODE_APP_SWITCH` (187) or accessibility `GLOBAL_ACTION_RECENTS`, confirm how the OEM implements its recent-apps page. No watcher/poller unless proven unavoidable.
@@ -35,7 +39,7 @@
 3. **Longer lift-to-wake cooldown.** Native lift-to-wake is already available. Increase the minimum interval between allowed wake cycles to prevent repeated wrist-motion wakeups; first measure the current behavior and determine whether an OEM parameter controls cooldown. Preserve native low-power sensor path. S13's 5-second software cooldown is a device-specific reference, not a drop-in APPLLP7 fix.
 4. **Aspect-ratio toggle shortcut — secondary to Recents.** Add to the top-button shortcut menu or an unused button combo without replacing current actions; keep native display geometry stable at rest.
 5. **Apps ignoring aspect-ratio switches.** Identify which apps fail and which display override/mode is requested. Investigate OEM per-app compatibility, window-layout propagation, activity recreation, and whether active fullscreen v6.2 can coexist. Do not re-enable the broken global square-first modification.
-6. **Clock/date-free first page: COMPLETED (v1.6)** — 10 app icons plus 4 preserved OEM favorites, user-confirmed 14 Nov 2026. Native 5 × 2 capacity; don't force 12 regular slots.ntal module; stop/revert if touch, pagination, or existing notification fixes regress.
+6. **Clock/date-free first page: COMPLETED (v1.6)** — 10 app icons plus 4 preserved OEM favorites, user-confirmed 14 Nov 2026. Native 5 × 2 capacity; don't force 12 regular slots.
 7. **Battery, wake, screen-off:** earlier unplugged test showed actual kernel suspend and Light Doze functioning; no proven runaway modem. Preserve baseline and measure before changing.
 8. **USB reliability:** return only if issues recur. Minimize reconnects.
 9. **Powered-off charging:** wait for the possible OEM OTA; no working custom fix published.
