@@ -20,12 +20,19 @@
 
 ## Notification vibration — user-reported working (14 November 2026)
 
-- **Native system setting, no Vector module:** User ran RTOSify root command `settings put system notification_vibration_intensity 0`; prior value was `null`, afterwards `0`, exit code 0. User reports notification vibration **seems disabled**. Keep this setting unchanged; test persistence after next ordinary reboot (not confirmed). Do not conflate with call/alarm vibration.
+- **Native system setting, no Vector module:** User ran RTOSify root command `settings put system notification_vibration_intensity 0`; prior value was `null`, afterwards `0`, exit code 0. User explicitly confirms that **new notifications no longer vibrate**. Keep this setting unchanged; test persistence after next ordinary reboot (not confirmed). Do not conflate with call/alarm vibration.
 
 ## Next tasks — native notification controls first (14 November 2026)
 
 1. **Remove unwanted persistent/ongoing notifications — FIRST:** Inspect Android Settings → Notifications → App notifications / notification categories, or long-press offending notification → Settings. For ongoing foreground-service notifications, determine owning package and channel before suppressing. User will be back at PC; collect sanitized read-only notification inventory if native UI doesn't expose enough controls. Avoid disabling important call, alarm, charging, security, media/navigation, accessibility, or Magisk status. No modifications yet.
 2. **Reduce notification card size/text — SECOND:** Check built-in Display size / Font size or native compact notification UI first. Prior APPLLP7 Compact Notifications v1 Vector module launcher-scoped reportedly stopped working; source used unsupported Xposed helper API. Only debug/surgically repair if stock settings cannot solve, preserving the working All Apps v1.7 and Watchface Fahrenheit v2 modules.
+
+### Read-only notification inventory — 14 November 2026, 19:14 ET
+
+- Native setting confirmed: `notification_vibration_intensity=0`, `font_scale=0.85`, physical density 182; no obvious system setting for compact notification cards in the captured keys.
+- Snapshot contained **two active notification candidates**: `com.google.android.youtube` (channel `3`, importance `3`) and `app.revanced.android.youtube` (channel `7`, importance `2`, category `transport`). Their **ongoing/foreground flags were not captured**, so these cannot yet be labeled persistent or safe to hide. User needs to identify which visible unwanted notifications to target; preferably a screenshot, or collect a snapshot while those exact cards are visible.
+- No Compact Notifications v1 log marker appeared in the recent logcat; older v1 source uses an Xposed helper signature known to be incompatible with this Vector build. Avoid diagnosing it as definitely disabled from this limited log window. Prefer native settings; otherwise fix through compatible runtime hooks.
+- **No notification-channel settings, modules, apps or firmware changed by inventory.**
 
 ## Historical unsuccessful experiments (not active)
 
