@@ -234,7 +234,7 @@ See **[APPLLP 7 Pro project tracker](PROJECT-TRACKER.md)** for verified fixes, o
 
 - [Pure Face / DigitalPureBlack watch face](Pure-Face/README.md) — installed and confirmed by the tester; installation helper included, user-supplied graphical assets not committed.
 - [Celsius-to-Fahrenheit display workaround](Weather-Temperature-Fahrenheit/README.md) — **user confirmed working after a full reboot (13 Nov 2026)**; repeated-conversion edge cases remain under review.
-- Compact notification layout — a launcher-scoped Vector module was reported to work initially, **but user later reports it isn't working**; now tracked as a regression, not resolved.
+- Compact notification layout — [Compact Notifications](Compact-Notifications/README.md) v2 is **visually and hook-log verified**; the denser v3 built and installed but still needs post-reboot confirmation.
 - Unwanted persistent notifications — investigate selective removal without silencing essential indicators.
 - Full First Page v1 and v1.1 — clock/date removal and first-page expansion were both **unsuccessful on-device** despite successful APK installs; launcher remains unchanged. Investigate hook logs before retrying.
 
@@ -245,4 +245,4 @@ See **[APPLLP 7 Pro project tracker](PROJECT-TRACKER.md)** for verified fixes, o
 
 [**All Apps Fix (current v1.7)**](All-Apps-Fix/README.md) is one cumulative Vector module that removes the large clock/date from the OEM Style 5 app menu, keeps **10 regular icons per full page (5 × 2) and the four original bottom favorites**, preserves app sorting, and skips the unaddressable empty page at wraparound. User-confirmed on the APPLLP 7 Pro; logs verify both wrap directions. This is a separate launcher-scoped Vector module, not part of rooting. Don't install on other firmware builds without verification.
 
-**Current next task:** Turn off notification vibration without silencing notifications, calls, or alarms. Native setting first; RTOSify-only reversible test if necessary.
+**Notification status (14 November 2026):** Notification vibration was disabled in the native settings for this tested configuration; Compact Notifications v2 was subsequently verified. Selective per-app notification silencing is being evaluated separately.
