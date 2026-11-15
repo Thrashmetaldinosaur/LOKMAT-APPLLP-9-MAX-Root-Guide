@@ -1,6 +1,6 @@
 # APPLLP 7 Pro — fixes and development tracker
 
-**Updated 14 November 2026.** Reference device: `WP_C30_VP69_OLED`, Android 15, build `LOKMAT_APPLLP_7_PRO_C30_EN_V1.0_20260921`, Magisk 31.1, unlocked slot A. **Status labels distinguish user-confirmed results from tests and unverified proposals.**
+**Updated 15 November 2026.** Reference device: `WP_C30_VP69_OLED`, Android 15, build `LOKMAT_APPLLP_7_PRO_C30_EN_V1.0_20260921`, Magisk 31.1, unlocked slot A. **Status labels distinguish user-confirmed results from tests and unverified proposals.**
 
 ## Verified / keep working
 
@@ -52,6 +52,7 @@
 1. **Longer lift-to-wake cooldown.** Native lift-to-wake is already available. Increase the minimum interval between allowed wake cycles to prevent repeated wrist-motion wakeups; first measure the current behavior and determine whether an OEM parameter controls cooldown. Preserve native low-power sensor path. S13's 5-second software cooldown is a device-specific reference, not a drop-in APPLLP7 fix.
 2. **Aspect-ratio toggle shortcut — secondary to Recents.** Add to the top-button shortcut menu or an unused button combo without replacing current actions; keep native display geometry stable at rest.
 3. **Battery, wake, screen-off:** earlier unplugged test showed actual kernel suspend and Light Doze functioning; no proven runaway modem. Preserve baseline and measure before changing.
+4. **Improve NYC weather accuracy — requested, not yet tested (15 Nov 2026).** Compare the OEM weather application's source, location handling, update cadence and reported conditions against Breezy Weather for New York City. Prefer a supported way to make the OEM system weather app and watch face consume Breezy Weather data or a demonstrably more accurate provider; if no native source selection exists, assess a reversible, narrowly scoped data-source adapter. Preserve the verified system-wide Fahrenheit setting and watchface Fahrenheit v2 conversion, location privacy, battery behavior and existing clock face. Verify actual accuracy and freshness before replacing the provider; do not assume Breezy Weather or any particular source is inherently more accurate.
 
 ## User decisions — closed without additional modifications
 
