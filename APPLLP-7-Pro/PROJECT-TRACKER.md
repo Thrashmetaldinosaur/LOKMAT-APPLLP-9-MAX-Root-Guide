@@ -56,6 +56,13 @@
 
 5. **Fix Magisk Superuser authorization notifications / approval UI (OPEN, 15 Nov 2026).** On this Magisk 31.1 watch, root approval toasts/dialogs are not appearing automatically; the owner must grant app access manually in Magisk. Guided lift-to-wake cooldown root trial v2.1 (`com.appllp7.wakecooldowntrial2`, display label `Wake Cooldown Root Trial v2`) failed SU preflight with `exit=13 Permission denied`, before altering wrist wake; temporary app uninstalled and OEM wake restored to `1`. For the next test, install then pause to allow manual Magisk grant *while the temporary app is installed*, then explicitly resume. Investigate missing prompt/notification cause without disrupting existing functional root, Vector or other grants; don't assume toast delivery and root authorization are the same issue.
 
+## Native lift-to-wake cooldown — successful guarded live trial (15 November 2026)
+
+- **10-second event-driven root trial v2.2 PASS, one guided screen-off cycle only; NOT installed persistently.** Device-side records show `SCREEN_OFF seq=2`, a verified root-backed `settings put system persist.sys.raise.wakeup 0` readback (`WAKE_DISABLED`), then `settings put system persist.sys.raise.wakeup 1` restored on the exact alarm (17 ms past 10-second target), zero toggle/schedule exceptions. User confirmed Test A (+4 s) screen stayed OFF and Test B (+13 s) wrist raise woke screen. A second screen-on restore also succeeded.
+- The Magisk 31.1 root request was initially denied (exit 13), then **manual Superuser grant** succeeded while app remained installed. User saw a Magisk "gave superuser access" notification upon the second wrist wake. This is evidence of a delayed notification, **not proof** the automatic prompt UI is fixed.
+- Installer restored OEM setting to `1`, verified uninstall of the temporary test app, and completed independent watchdog cleanup. Existing unrelated Vector/System Framework hook stays disabled.
+- **Next:** Validate repeated screen-off cycles, suspend/Doze/force-stop and permission persistence; design a guarded persistent opt-in package with an independent per-cycle fail-safe restore plus boot/manual rollback. Avoid persistent on-off toggling until background reliability is established.
+
 ## User decisions — closed without additional modifications
 
 - **Recent Apps shortcut:** No extra shortcut needed; existing swipe gesture works.
